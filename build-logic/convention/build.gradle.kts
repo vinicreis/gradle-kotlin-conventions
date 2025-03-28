@@ -6,8 +6,9 @@ plugins {
 version = libs.versions.app.get()
 
 dependencies {
-    implementation(libs.kotlinx.serialization.json)
     compileOnly(libs.kotlin.multiplatform.plugin)
+    compileOnly(libs.kotlin.compose.plugin)
+    compileOnly(libs.compose.plugin)
     compileOnly(libs.google.ksp.plugin)
 }
 
@@ -38,6 +39,14 @@ gradlePlugin {
             description = "Conventions to configure and enable JS variant to a KMP project"
             tags = listOf("convention", "kotlin", "kmp", "js")
             implementationClass = "io.github.vinicreis.convention.plugin.kotlin.multiplatform.js.KmpJsLibraryPlugin"
+        }
+
+        register("io.github.vinicreis.convention.kmp.compose") {
+            id = "io.github.vinicreis.convention.kmp.compose"
+            displayName = "KMP Compose conventions plugin"
+            description = "Conventions to configure and enable Compose to a KMP project"
+            tags = listOf("convention", "kotlin", "kmp", "compose")
+            implementationClass = "io.github.vinicreis.convention.plugin.kotlin.multiplatform.compose.KmpComposeLibraryPlugin"
         }
     }
 }

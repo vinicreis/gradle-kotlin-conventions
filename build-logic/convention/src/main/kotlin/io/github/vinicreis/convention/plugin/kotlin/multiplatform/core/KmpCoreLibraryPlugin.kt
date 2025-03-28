@@ -7,6 +7,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
+@Suppress("unused")
 @OptIn(ExperimentalKotlinGradlePluginApi::class)
 class KmpCoreLibraryPlugin : Plugin<Project> {
     override fun apply(target: Project) {
