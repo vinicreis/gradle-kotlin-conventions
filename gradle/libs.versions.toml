@@ -2,6 +2,7 @@
 app = "0.0.1"
 
 # Gradle
+gradle-plugin-publish = "1.2.1"
 agp = "8.7.3"
 
 # Kotlin
@@ -30,8 +31,11 @@ slf4j = "2.0.17"
 
 [plugins]
 # Convention
-convention-multiplatform = { id = "io.github.vinicreis.convention.kotlin.multiplatform" }
-convention-jvm = { id = "io.github.vinicreis.convention.kotlin.multiplatform.jvm" }
+convention-multiplatform = { id = "io.github.vinicreis.convention.kmp.core" }
+convention-jvm = { id = "io.github.vinicreis.convention.kmp.jvm" }
+
+# Gradle
+gradle-plugin-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-plugin-publish" }
 
 # Kotlin
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -56,9 +60,7 @@ kotlin-multiplatform-plugin = { group = "org.jetbrains.kotlin.multiplatform", na
 kotlin-compose-plugin = { group = "org.jetbrains.kotlin.plugin.compose", name = "org.jetbrains.kotlin.plugin.compose.gradle.plugin", version.ref = "kotlin" }
 kotlin-serialization-plugin = { group = "org.jetbrains.kotlin.plugin.serialization", name = "org.jetbrains.kotlin.plugin.serialization.gradle.plugin", version.ref = "kotlin" }
 google-ksp-plugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
-
-# Kotlin
-kotlin-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-serialization" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-serialization" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 
 # Compose
