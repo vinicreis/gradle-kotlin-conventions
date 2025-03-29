@@ -41,7 +41,7 @@ abstract class KmpComposeExtension(private val project: Project) {
     companion object {
         private const val NAME = "kmpCompose"
 
-        fun Project.registerKpmComposeExtension() {
+        internal fun Project.registerKpmComposeExtension() {
             extensions.create(NAME, KmpComposeExtension::class.java)
         }
     }

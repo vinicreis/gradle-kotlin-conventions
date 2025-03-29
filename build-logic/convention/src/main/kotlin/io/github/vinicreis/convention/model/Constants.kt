@@ -22,4 +22,32 @@ internal object LibraryAlias {
         const val NAVIGATION = "androidx.compose.navigation"
         const val SHIMMER = "valentinilk.compose.shimmer"
     }
+
+    object Ktor {
+        const val SERIALIZATION_JSON = "ktor.serialization.json"
+
+        object Server {
+            const val CORE = "ktor.server.core"
+            const val NETTY = "ktor.server.netty"
+            const val AUTH = "ktor.server.auth"
+            const val CORS = "ktor.server.cors"
+            const val CONTENT_NEGOTIATION = "ktor.server.content.negotiation"
+
+            object Logging {
+                const val LOG4J_CORE = "log4j-core"
+                const val LOG4J_API = "log4j-api"
+                const val LOG4J_SLF4J = "log4j-slf4j"
+                const val SLF4J_API = "slf4j-api"
+                const val SLF4J_SIMPLE = "slf4j-simple"
+            }
+        }
+
+        object Client {
+            const val CORE = "ktor.client.core"
+            const val CIO_JVM = "ktor.client.cio.jvm"
+            const val JS = "ktor.client.js"
+            const val LOGGING = "ktor.client.logging"
+            const val CONTENT_NEGOTIATION = "ktor.client.content.negotiation"
+        }
+    }
 }

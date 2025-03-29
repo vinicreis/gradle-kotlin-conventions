@@ -48,6 +48,14 @@ gradlePlugin {
             tags = listOf("convention", "kotlin", "kmp", "compose")
             implementationClass = "io.github.vinicreis.convention.plugin.kotlin.multiplatform.compose.KmpComposeLibraryPlugin"
         }
+
+        register("io.github.vinicreis.convention.kmp.ktor") {
+            id = "io.github.vinicreis.convention.kmp.ktor"
+            displayName = "KMP Ktor Client conventions plugin"
+            description = "Conventions to configure and enable Ktor Client and/or Server to a KMP project"
+            tags = listOf("convention", "kotlin", "kmp", "ktor", "client")
+            implementationClass = "io.github.vinicreis.convention.plugin.kotlin.multiplatform.ktor.KmpKtorLibraryPlugin"
+        }
     }
 }
 
