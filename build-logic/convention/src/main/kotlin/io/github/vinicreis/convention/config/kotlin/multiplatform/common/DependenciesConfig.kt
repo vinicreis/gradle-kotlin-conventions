@@ -11,6 +11,7 @@ internal fun Project.addCommonDependencies() {
         dependencies {
             implementation(libs.library(LibraryAlias.KotlinX.COROUTINES_CORE))
             implementation(libs.library(LibraryAlias.KotlinX.SERIALIZATION_JSON))
+            implementation(libs.library(LibraryAlias.KotlinX.DATETIME))
         }
     }
 }

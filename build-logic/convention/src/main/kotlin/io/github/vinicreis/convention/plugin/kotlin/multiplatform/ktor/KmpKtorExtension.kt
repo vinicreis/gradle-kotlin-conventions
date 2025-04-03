@@ -7,13 +7,15 @@ import io.github.vinicreis.convention.config.kotlin.multiplatform.ktor.addKtorCl
 import io.github.vinicreis.convention.config.kotlin.multiplatform.ktor.addKtorClientLoggingDependencies
 import io.github.vinicreis.convention.config.kotlin.multiplatform.ktor.addKtorJsonDependencies
 import io.github.vinicreis.convention.config.kotlin.multiplatform.ktor.addKtorServerAuthenticationDependencies
+import io.github.vinicreis.convention.config.kotlin.multiplatform.ktor.addKtorServerCallLogging
 import io.github.vinicreis.convention.config.kotlin.multiplatform.ktor.addKtorServerContentNegotiationDependencies
 import io.github.vinicreis.convention.config.kotlin.multiplatform.ktor.addKtorServerCoreDependencies
 import io.github.vinicreis.convention.config.kotlin.multiplatform.ktor.addKtorServerCorsDependencies
 import io.github.vinicreis.convention.config.kotlin.multiplatform.ktor.addKtorServerLog4jDependencies
+import io.github.vinicreis.convention.config.kotlin.multiplatform.ktor.addKtorServerLogbackDependencies
 import io.github.vinicreis.convention.config.kotlin.multiplatform.ktor.addKtorServerNettyDependencies
 import io.github.vinicreis.convention.config.kotlin.multiplatform.ktor.addKtorServerSlf4JDependencies
-import io.github.vinicreis.convention.plugin.kotlin.multiplatform.ktor.KmpKtorExtension.ClientExtension.Companion.registerClientExtension
+import io.github.vinicreis.convention.plugin.kotlin.multiplatform.ktor.KmpKtorExtension.ClientExtension.Companion.registerKtorClientExtension
 import io.github.vinicreis.convention.plugin.kotlin.multiplatform.ktor.KmpKtorExtension.ServerExtension.Companion.registerKtorServerExtension
 import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionAware
@@ -33,12 +35,17 @@ abstract class KmpKtorExtension(private val project: Project) : ExtensionAware {
         }
 
         class LoggingDsl internal constructor(private val project: Project) {
-            init {
+            fun log4j() {
                 project.addKtorServerSlf4JDependencies()
+                project.addKtorServerLog4jDependencies()
             }
 
-            fun log4j() {
-                project.addKtorServerLog4jDependencies()
+            fun logback() {
+                project.addKtorServerLogbackDependencies()
+            }
+
+            fun callLogging() {
+                project.addKtorServerCallLogging()
             }
         }
 
@@ -116,7 +123,7 @@ abstract class KmpKtorExtension(private val project: Project) : ExtensionAware {
             internal val Project.kmpKtorClientExtension: ClientExtension
                 get() = kmpKtorExtension.extensions.getByType<ClientExtension>()
 
-            internal fun Project.registerClientExtension() {
+            internal fun Project.registerKtorClientExtension() {
                 kmpKtorExtension.extensions.create(NAME, ClientExtension::class.java)
             }
         }
@@ -131,7 +138,7 @@ abstract class KmpKtorExtension(private val project: Project) : ExtensionAware {
         internal fun Project.registerKpmKtorExtension() {
             extensions.create(NAME, KmpKtorExtension::class.java)
 
-            registerClientExtension()
+            registerKtorClientExtension()
             registerKtorServerExtension()
         }
     }

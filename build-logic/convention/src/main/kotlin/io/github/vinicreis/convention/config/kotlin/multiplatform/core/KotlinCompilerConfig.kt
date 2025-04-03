@@ -12,3 +12,9 @@ internal fun Project.configureCompiler() {
         }
     }
 }
+
+internal fun Project.toggleSourcePublication(enable: Boolean) {
+    extensions.configure<KotlinMultiplatformExtension> {
+        withSourcesJar(publish = enable)
+    }
+}

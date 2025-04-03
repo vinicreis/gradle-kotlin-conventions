@@ -25,6 +25,6 @@ internal fun Project.jsMain(
     configure: KotlinSourceSet.() -> Unit,
 ) {
     extensions.configure<KotlinMultiplatformExtension> {
-        sourceSets.named("jsMain").configure(configure)
+        sourceSets.named("wasmJsMain").configure(configure)
     }
 }

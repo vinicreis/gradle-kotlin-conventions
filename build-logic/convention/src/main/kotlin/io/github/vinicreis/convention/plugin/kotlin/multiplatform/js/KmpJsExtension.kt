@@ -2,6 +2,7 @@ package io.github.vinicreis.convention.plugin.kotlin.multiplatform.js
 
 import io.github.vinicreis.convention.config.kotlin.multiplatform.js.jsCompilerConfig
 import io.github.vinicreis.convention.config.kotlin.multiplatform.js.jsConfig
+import io.github.vinicreis.convention.config.kotlin.multiplatform.js.wasmJsCompilerConfig
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -16,13 +17,17 @@ abstract class KmpJsExtension(private val project: Project) {
         project.jsConfig()
     }
 
-    fun compiler(
+    fun js(
         compiler: KotlinJsCompilerType? = null,
         config: KotlinJsTargetDsl.() -> Unit = { },
     ) {
         compiler
             ?.also { project.jsCompilerConfig(it, config) }
             ?: default()
+    }
+
+    fun wasmJs(config: KotlinJsTargetDsl.() -> Unit = { }) {
+        project.wasmJsCompilerConfig(config)
     }
 
     companion object {

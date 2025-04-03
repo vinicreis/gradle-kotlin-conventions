@@ -1,6 +1,8 @@
 plugins {
     `kotlin-dsl`
     alias(libs.plugins.gradle.plugin.publish)
+    `version-catalog`
+    `maven-publish`
 }
 
 version = libs.versions.app.get()
@@ -51,15 +53,33 @@ gradlePlugin {
 
         register("io.github.vinicreis.convention.kmp.ktor") {
             id = "io.github.vinicreis.convention.kmp.ktor"
-            displayName = "KMP Ktor Client conventions plugin"
+            displayName = "KMP Ktor conventions plugin"
             description = "Conventions to configure and enable Ktor Client and/or Server to a KMP project"
-            tags = listOf("convention", "kotlin", "kmp", "ktor", "client")
+            tags = listOf("convention", "kotlin", "kmp", "ktor", "client", "server")
             implementationClass = "io.github.vinicreis.convention.plugin.kotlin.multiplatform.ktor.KmpKtorLibraryPlugin"
+        }
+
+        register("io.github.vinicreis.convention.kmp.koin") {
+            id = "io.github.vinicreis.convention.kmp.koin"
+            displayName = "KMP Koin conventions plugin"
+            description = "Conventions to configure and enable Koin to a KMP project"
+            tags = listOf("convention", "kotlin", "kmp", "ktor", "koin")
+            implementationClass = "io.github.vinicreis.convention.plugin.kotlin.multiplatform.koin.KvmKoinLibraryPlugin"
         }
     }
 }
 
 publishing {
+    publications {
+        create<MavenPublication>("libs") {
+            from(components["versionCatalog"])
+
+            groupId = "io.github.vinicreis"
+            artifactId = "version-catalog"
+            version = project.version.toString()
+        }
+    }
+
     repositories {
         maven {
             val homePath = System.getProperty("user.home")

@@ -1,14 +1,30 @@
 package io.github.vinicreis.convention.plugin.kotlin.multiplatform.jvm
 
 import org.gradle.api.Project
-import org.gradle.api.provider.Property
-import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 
-internal val Project.jvmExtension: KmpJvmExtension
-    get() = extensions.getByType<KmpJvmExtension>()
+abstract class KmpJvmExtension(private val project: Project) {
+    fun library(config: (KotlinJvmTarget.() -> Unit)? = null) {
+        project.extensions.configure<KotlinMultiplatformExtension> {
+            jvm()
+        }
+    }
 
-abstract class KmpJvmExtension(project: Project) {
-    val mainClass: Property<String> = project.objects.property(String::class.java)
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    fun application(mainClass: String) {
+        project.extensions.configure<KotlinMultiplatformExtension> {
+            jvm {
+                binaries {
+                    executable {
+                        this.mainClass.set(mainClass)
+                    }
+                }
+            }
+        }
+    }
 
     companion object {
         private const val NAME = "kmpJvm"
