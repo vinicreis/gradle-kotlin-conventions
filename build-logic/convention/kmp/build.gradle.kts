@@ -3,8 +3,10 @@ plugins {
     alias(libs.plugins.gradle.plugin.publish)
     `version-catalog`
     `maven-publish`
+    signing
 }
 
+group = "io.github.vinicreis"
 version = libs.versions.app.get()
 
 dependencies {
@@ -69,17 +71,11 @@ gradlePlugin {
     }
 }
 
+signing {
+    sign(publishing.publications)
+}
+
 publishing {
-    publications {
-        create<MavenPublication>("libs") {
-            from(components["versionCatalog"])
-
-            groupId = "io.github.vinicreis"
-            artifactId = "version-catalog"
-            version = project.version.toString()
-        }
-    }
-
     repositories {
         maven {
             val homePath = System.getProperty("user.home")

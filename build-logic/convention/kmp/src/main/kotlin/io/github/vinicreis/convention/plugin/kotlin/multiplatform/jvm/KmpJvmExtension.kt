@@ -4,10 +4,9 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 
 abstract class KmpJvmExtension(private val project: Project) {
-    fun library(config: (KotlinJvmTarget.() -> Unit)? = null) {
+    fun library() {
         project.extensions.configure<KotlinMultiplatformExtension> {
             jvm()
         }
