@@ -4,6 +4,7 @@ import io.github.vinicreis.convention.config.kotlin.multiplatform.common.addComm
 import io.github.vinicreis.convention.config.kotlin.multiplatform.common.addCommonPlugins
 import io.github.vinicreis.convention.config.kotlin.multiplatform.core.configureCompiler
 import io.github.vinicreis.convention.config.kotlin.multiplatform.core.toggleSourcePublication
+import io.github.vinicreis.convention.task.core.configureVersionTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
@@ -17,6 +18,7 @@ class KmpCoreLibraryPlugin : Plugin<Project> {
             configureCompiler()
             toggleSourcePublication(enable = true)
             addCommonDependencies()
+            configureVersionTask()
         }
     }
 }

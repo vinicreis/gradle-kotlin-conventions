@@ -2,6 +2,10 @@ package io.github.vinicreis.convention.model
 
 internal object Version {
     const val JVM_TOOLCHAIN = 17
+
+    object Alias {
+        const val APP = "app"
+    }
 }
 
 internal object PluginId {
